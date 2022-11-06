@@ -1,14 +1,7 @@
-function compareArrays(arr1, arr2) {
-
-  return arr1.every( (i, index, array) => array.length === arr2.length && index === arr2.indexOf(i) && i === arr2[index]);
-
-};
+const compareArrays = (arr1, arr2) => arr1.length === arr2.length && arr1.every( (e, index) => e === arr2[index]);
 
 
 
-function advancedFilter(arr) {
+const advancedFilter = arr => arr.filter( e => e > 0 && e % 3 === 0 ).map( e => e * 10 );
 
-  return arr.filter( i => i > 0 && i % 3 === 0 ).map( i => i * 10 );
-
-};
-
+debugger;
