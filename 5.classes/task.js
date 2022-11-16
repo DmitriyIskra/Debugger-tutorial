@@ -111,6 +111,11 @@ class Library {
 
 // -------------------S T U D E N T S
 
+class Subject {
+    constructor(subject, mark) {
+        this[subject] = [mark];
+    }
+}
 
 class Student {
     constructor(name){
@@ -120,22 +125,41 @@ class Student {
 
 
     addMark(mark, subject) {
-        if(mark < 1 || mark > 5) {
-            console.log('Ошибка: оценка не соответствует устанвленной шкале оценок')
-            return 'Ошибка: оценка не соответствует установленной шкале оценок'
+        
+        if(this.journal.length === 0){
+            this.journal.push(new Subject([subject], mark));
         }
-        else if(this?.journal) {
-            this.journal.subject = mark;
+        else{
+            this.journal.forEach( e => {
+                if(e?.[subject]){
+                    e[subject].push(mark);
+                }
+                else{
+                    this.journal.push(new Subject([subject], mark));
+                }
+            })
         }
-        else {
-            this.journal.push(subject = [mark]);
-        }
+
+
+            // if(mark < 1 || mark > 5) {
+            //     console.log('Ошибка: оценка не соответствует устанвленной шкале оценок')
+            //     return 'Ошибка: оценка не соответствует установленной шкале оценок'
+            // }
+            // else if(this.journal?.[subject]) {
+                
+            // }
+            
+          
     }
         
 };
 
 
-// const studentFirst = new Student('Svetlana', 'woman', 25);
+const studentFirst = new Student('Svetlana');
+
+studentFirst.addMark(4, 'Algebra');
+studentFirst.addMark(3, 'Algebra');
+studentFirst.addMark(5, 'Tehnology')
 // const studentSecond = new Student('Igor', 'man', 23);
 // const studentThird = new Student('Oleg', 'man', 27);
 // const studentFourth = new Student('Irina', 'woman', 22);
