@@ -126,7 +126,11 @@ class Student {
 
     addMark(mark, subject) {
         
-        if(this.journal.length === 0){
+        if(mark < 1 || mark > 5) {
+                console.log('Ошибка: оценка не соответствует устанвленной шкале оценок')
+                return 'Ошибка: оценка не соответствует установленной шкале оценок'
+            }
+        else if(this.journal.length === 0){
             this.journal.push(new Subject([subject], mark));
         }
         else{
@@ -138,18 +142,7 @@ class Student {
                     this.journal.push(new Subject([subject], mark));
                 }
             })
-        }
-
-
-            // if(mark < 1 || mark > 5) {
-            //     console.log('Ошибка: оценка не соответствует устанвленной шкале оценок')
-            //     return 'Ошибка: оценка не соответствует установленной шкале оценок'
-            // }
-            // else if(this.journal?.[subject]) {
-                
-            // }
-            
-          
+        }     
     }
         
 };
@@ -160,6 +153,7 @@ const studentFirst = new Student('Svetlana');
 studentFirst.addMark(4, 'Algebra');
 studentFirst.addMark(3, 'Algebra');
 studentFirst.addMark(5, 'Tehnology')
+studentFirst.addMark(6, 'Tehnology')
 // const studentSecond = new Student('Igor', 'man', 23);
 // const studentThird = new Student('Oleg', 'man', 27);
 // const studentFourth = new Student('Irina', 'woman', 22);
