@@ -106,12 +106,6 @@ class Library {
 
 // -------------------S T U D E N T S
 
-class Subject {
-    constructor(subject, mark) {
-        this[subject] = [mark];
-    }
-}
-
 class Student {
     constructor(name){
         this.name = name;
@@ -136,21 +130,26 @@ class Student {
     };
 
 
-    getAverageBySubject2(subject) {        
+    getAverageBySubject(subject) {        
         return this.journal[subject].reduce( (acc, e) => acc += e ) / this.journal[subject].length;    
     }  
 
 
-    // getAverage() {
-    //     let totalQuantityMarks;
+    getAverage() {
+        let totalMarks = 0;
+        let totalAmountMarks = 0;
 
-    //     this.journal.forEach( e => {
-            
-    //     })
-    // }
+        for( let e in this.journal) {
+            totalMarks += this.journal[e].length;
+
+            totalAmountMarks += this.journal[e].reduce( (acc, e) => acc += e );
+        }
+
+        return totalAmountMarks / totalMarks;
+    }
       
 };
-// debugger;
+
 
 const studentFirst = new Student('Svetlana');
 
@@ -160,7 +159,7 @@ studentFirst.addMark(4, 'tehnology');
 studentFirst.addMark(6, 'tehnology');
 studentFirst.addMark(2, 'tehnology');
 
-console.log(studentFirst.getAverageBySubject2('tehnology'));
+
 
 
 
