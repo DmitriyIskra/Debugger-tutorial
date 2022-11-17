@@ -115,7 +115,8 @@ class Subject {
 class Student {
     constructor(name){
         this.name = name;
-        this.journal = [];
+        // this.journal = [];
+        this.journal = {};
     }
 
 
@@ -125,32 +126,28 @@ class Student {
                 console.log('Ошибка: оценка не соответствует устанвленной шкале оценок');
                 return 'Ошибка: оценка не соответствует установленной шкале оценок';
             }
-        else if(this.journal.length === 0){
-            this.journal.push(new Subject([subject], mark));
+        else if(this?.journal?.[subject]){
+            this.journal[subject].push(mark)
         }
         else{
-            this.journal.forEach( e => {
-                if(e?.[subject]){
-                    e[subject].push(mark);
-                }
-                else{
-                    this.journal.push(new Subject([subject], mark));
-                }
-            })
-        }     
+            this.journal[subject] = [mark]
+        }
+        
     };
 
 
-    getAverageBySubject(subject) {
-        const indexSubject = this.journal.findIndex( e => e[subject] )
-        
-        return this.journal[indexSubject][subject].reduce( (acc, e) => acc += e ) / this.journal[indexSubject][subject].length;    
+    getAverageBySubject2(subject) {        
+        return this.journal[subject].reduce( (acc, e) => acc += e ) / this.journal[subject].length;    
     }  
 
 
-    getAverage() {
-        
-    }
+    // getAverage() {
+    //     let totalQuantityMarks;
+
+    //     this.journal.forEach( e => {
+            
+    //     })
+    // }
       
 };
 // debugger;
@@ -159,10 +156,11 @@ const studentFirst = new Student('Svetlana');
 
 studentFirst.addMark(4, 'algebra');
 studentFirst.addMark(3, 'algebra');
-studentFirst.addMark(5, 'tehnology');
+studentFirst.addMark(4, 'tehnology');
 studentFirst.addMark(6, 'tehnology');
+studentFirst.addMark(2, 'tehnology');
 
-console.log(studentFirst.getAverageBySubject('algebra'));
+console.log(studentFirst.getAverageBySubject2('tehnology'));
 
 
 
