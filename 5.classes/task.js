@@ -87,14 +87,9 @@ class Library {
     findBookBy(key, value) {
         let findedBook = this.books.find( e => e[key] === value);
 
-        if(findedBook) {
-            return findedBook;
-        }
-        else {
-            return null;
-        }
+        return findedBook || null
     }
-
+    
     giveBookByName(bookName) {
         let findedBook = this.books.find( e => e.name === bookName);
 
@@ -124,11 +119,11 @@ class Student {
     }
 
 
-    addMark(mark, subject) {
+    addMark(mark, subject) {    // Метод внесения предметов и оценок
         
         if(mark < 1 || mark > 5) {
-                console.log('Ошибка: оценка не соответствует устанвленной шкале оценок')
-                return 'Ошибка: оценка не соответствует установленной шкале оценок'
+                console.log('Ошибка: оценка не соответствует устанвленной шкале оценок');
+                return 'Ошибка: оценка не соответствует установленной шкале оценок';
             }
         else if(this.journal.length === 0){
             this.journal.push(new Subject([subject], mark));
@@ -143,20 +138,31 @@ class Student {
                 }
             })
         }     
-    }
-        
-};
+    };
 
+
+    getAverageBySubject(subject) {
+        const indexSubject = this.journal.findIndex( e => e[subject] )
+        
+        return this.journal[indexSubject][subject].reduce( (acc, e) => acc += e ) / this.journal[indexSubject][subject].length;    
+    }  
+
+
+    getAverage() {
+        
+    }
+      
+};
+// debugger;
 
 const studentFirst = new Student('Svetlana');
 
-studentFirst.addMark(4, 'Algebra');
-studentFirst.addMark(3, 'Algebra');
-studentFirst.addMark(5, 'Tehnology')
-studentFirst.addMark(6, 'Tehnology')
-// const studentSecond = new Student('Igor', 'man', 23);
-// const studentThird = new Student('Oleg', 'man', 27);
-// const studentFourth = new Student('Irina', 'woman', 22);
+studentFirst.addMark(4, 'algebra');
+studentFirst.addMark(3, 'algebra');
+studentFirst.addMark(5, 'tehnology');
+studentFirst.addMark(6, 'tehnology');
+
+console.log(studentFirst.getAverageBySubject('algebra'));
 
 
-// debugger;
+
