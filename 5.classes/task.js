@@ -109,7 +109,7 @@ class Library {
 class Student {
     constructor(name){
         this.name = name;
-        // this.journal = [];
+        
         this.journal = {};
     }
 
