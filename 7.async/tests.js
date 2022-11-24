@@ -5,7 +5,7 @@ describe('Домашнее задание к лекции 7 «Асинхронн
   beforeEach(function(){
     clock = new AlarmClock();
   })
-
+ 
   it('необходимо создавать объект будильник', () => {
     expect(clock).toBeTruthy();
   });
