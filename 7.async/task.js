@@ -19,7 +19,7 @@
 
     addClock(time, callback, id) {
         if(!id) {                    // Проверка передан ли id
-            throw new Error('error text');
+            throw new Error('Невозможно идентифицировать будильник. Параметр id не передан');
         }
 
         if( this.alarmCollection.some( e => e.id === id) ) {  // Проверка на существование id, в массиве звонков
@@ -86,10 +86,4 @@
 
 
 
-let clock1 = new AlarmClock();
-clock2.addClock('22:25', () => console.log('text'), 1);
 
-
-// clock2.addClock('22:25', () => console.log('text2'), 2)
-// clock2.addClock('22:25', () => console.log('text3'), 3)
-// debugger;
