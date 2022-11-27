@@ -26,15 +26,20 @@
             console.error('Ошибка звонок с таким идентификатором уже существует');
             return;
         }
-        else {                      // Добавление звонка
-            this.alarmCollection.push( new RingAlarmClock(id, time, callback) );
-        }
+                            // Добавление звонка
+        this.alarmCollection.push( new RingAlarmClock(id, time, callback) );
+        
     };
 
 
     removeClock(id) {                    // Удаление звонка
-        const indexToDelete = this.alarmCollection.findIndex( e => e === id);
-        this.alarmCollection.splice(indexToDelete, 1);
+        if(this.alarmCollection.length > 0) {
+            const indexToDelete = this.alarmCollection.findIndex( e => e.id === id);
+            this.alarmCollection.splice(indexToDelete, 1);
+            return;
+        }
+        
+        console.error('Звонков не существует, удалять нечего')
     };
 
 
@@ -72,7 +77,7 @@
 
     clearAlarms() {   //   Остановка таймера и очистка набора звонков
         this.stop();
-        this.alarmCollection.length = 0;
+        this.alarmCollection = [];
     };
     
 
