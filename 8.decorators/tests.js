@@ -6,7 +6,7 @@ describe("Домашнее задание к занятию 8 «Функции �
     let upgAdd3;
 
 
-    beforeEach(function(){
+    beforeEach(function(){ 
       upgAdd2 = cachingDecoratorNew(add2);
       upgAdd3 = cachingDecoratorNew(add3);
     });
