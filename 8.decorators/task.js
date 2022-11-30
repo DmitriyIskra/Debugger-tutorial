@@ -1,19 +1,35 @@
 
+class Cache {
+  constructor(hash, result) {
+    this[hash] = result;
+  }
+}
+
+const sum = (...args) => args.reduce( (acc, e) => acc += e );
+
 function cachingDecoratorNew(func) {
-  let cache = {};
+  let cache = [];
 
   return function(...args) {
     let hash = `${args}`
 
-    if(hash in cache) {
-      return "Из кэша: " + cache[hash];
+    let filteredHash = cache.find( e => hash in e );
+
+    if(filteredHash) {
+      return "Из кэша: " + filteredHash[hash];
     }
 
     let result =  func(...args);
-    cache[hash] = result;
+
+    if(cache.length === 5) {
+      cache.splice(0, 1);
+    }
+    
+    cache.push(new Cache(hash, result));
     return "Вычисляем: " + result;
   }
 }
+
 
 
 function debounceDecoratorNew(func, delay) {
